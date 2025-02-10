@@ -899,7 +899,6 @@ static inline void RCTApplyTransformationAccordingLayoutDirection(
   }
 
 #if !TARGET_OS_OSX // [macOS]
-
 RCT_SCROLL_EVENT_HANDLER(scrollViewWillBeginDecelerating, onMomentumScrollBegin)
 RCT_SCROLL_EVENT_HANDLER(scrollViewDidScrollToTop, onScrollToTop)
 
@@ -910,6 +909,7 @@ RCT_SCROLL_EVENT_HANDLER(scrollViewDidScrollToTop, onScrollToTop)
   RCT_SEND_SCROLL_EVENT(onScroll, nil);
   RCT_FORWARD_SCROLL_EVENT(scrollViewDidZoom : scrollView);
 }
+#endif // macOS]
 
 /*
  * Automatically centers the content such that if the content is smaller than the
@@ -940,6 +940,7 @@ RCT_SCROLL_EVENT_HANDLER(scrollViewDidScrollToTop, onScrollToTop)
   _scrollView.contentInset = UIEdgeInsetsMake(top, left, top, left);
 }
 
+#if !TARGET_OS_OSX // [macOS]
 - (void)addScrollListener:(NSObject<UIScrollViewDelegate> *)scrollListener
 {
   [_scrollListeners addObject:scrollListener];
@@ -949,7 +950,6 @@ RCT_SCROLL_EVENT_HANDLER(scrollViewDidScrollToTop, onScrollToTop)
 {
   [_scrollListeners removeObject:scrollListener];
 }
-
 #endif // [macOS]
 
 - (void)scrollViewDidScroll:(RCTCustomScrollView *)scrollView // [macOS]

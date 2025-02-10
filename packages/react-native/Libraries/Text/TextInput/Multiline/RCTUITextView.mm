@@ -82,8 +82,10 @@ static RCTUIColor *defaultPlaceholderColor(void) // [macOS]
     self.scrollsToTop = NO;
 #endif // [macOS]
     self.scrollEnabled = YES;
+#if !TARGET_OS_OSX // [macOS]
     _initialValueLeadingBarButtonGroups = nil;
     _initialValueTrailingBarButtonGroups = nil;
+#endif // [macOS]
   }
 
   return self;
